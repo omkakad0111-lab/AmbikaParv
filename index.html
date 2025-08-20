@@ -5,12 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Urli Water Fountain</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
+        :root {
+            --primary: #7B2D26;
+            --accent: #D4AF37;
+            --light: #F8F4EF;
+            --dark: #2C2C2C;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
             font-family: 'Inter', sans-serif;
-            background-color: #F8F4EF;
-            color: #2C2C2C;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
         }
         
         /* Header */
@@ -18,36 +33,41 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 1rem 2rem;
-            background-color: #7B2D26;
+            padding: 1rem;
+            background-color: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
         }
         
         header img {
-            height: 120px;
+            height: 80px;
+            width: auto;
         }
         
         /* Container */
         .container {
             max-width: 1200px;
             margin: auto;
-            padding: 1.5rem;
+            padding: 1rem;
         }
         
         /* Title */
         .page-title {
             text-align: center;
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: #7B2D26;
-            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 1.5rem 0;
+            line-height: 1.2;
         }
         
         /* Product section */
         .product {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
-            align-items: start;
         }
         
         /* Gallery */
@@ -59,12 +79,13 @@
         
         .gallery-item {
             width: 100%;
-            height: 200px;
+            height: 150px;
             object-fit: cover;
             border-radius: 10px;
             cursor: pointer;
             transition: transform 0.3s;
-            border: 2px solid #D4AF37;
+            border: 2px solid var(--accent);
+            box-shadow: var(--shadow);
         }
         
         .gallery-item:hover {
@@ -76,16 +97,130 @@
             position: relative;
             border-radius: 15px;
             overflow: hidden;
-            border: 2px solid #D4AF37;
+            border: 2px solid var(--accent);
             background-color: #fff;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
         }
         
         .video-container video {
             width: 100%;
-            height: 300px;
+            height: 200px;
             object-fit: cover;
             display: block;
+        }
+        
+        /* Product Details */
+        .details h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .price-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(123, 45, 38, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        
+        .price {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .highlights {
+            margin-top: 1.5rem;
+            padding: 1.2rem;
+            background: #fff;
+            border-left: 5px solid var(--accent);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .highlights h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .highlights h3 i {
+            color: var(--accent);
+        }
+        
+        .highlights ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.5rem;
+        }
+        
+        .highlights li {
+            margin: 0.4rem 0;
+            padding-left: 1.4rem;
+            position: relative;
+        }
+        
+        .highlights li::before {
+            content: "✔";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        /* Buttons */
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 14px 24px;
+            background-color: var(--primary);
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            flex: 1;
+            min-width: 180px;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
         }
         
         /* Modal */
@@ -105,10 +240,11 @@
         .modal-content {
             margin: auto;
             display: block;
-            width: 80%;
+            width: 90%;
             max-width: 700px;
             max-height: 80vh;
             object-fit: contain;
+            border-radius: 8px;
         }
         
         .close {
@@ -122,7 +258,7 @@
         }
         
         .close:hover {
-            color: #D4AF37;
+            color: var(--accent);
         }
         
         .modal-nav {
@@ -139,141 +275,121 @@
             background-color: rgba(123, 45, 38, 0.7);
             border: none;
             color: #fff;
-            font-size: 2.5rem;
-            padding: 0 14px;
+            font-size: 2rem;
+            padding: 10px 15px;
             cursor: pointer;
             border-radius: 50%;
             pointer-events: all;
             transition: 0.3s;
-            margin: 0 20px;
+            margin: 0 10px;
         }
         
         .modal-nav button:hover {
-            background-color: #D4AF37;
-            color: #2C2C2C;
+            background-color: var(--accent);
+            color: var(--dark);
         }
         
-        /* Product Details */
-        .details h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: #7B2C2C;
-            margin-bottom: 1rem;
+        /* Benefits Section */
+        .benefits {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
         
-        .price-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-        }
-        
-        .price {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #D4AF37;
-        }
-        
-        .description {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        
-        .highlights {
-            margin-top: 1.5rem;
-            padding: 1rem;
+        .benefit-card {
             background: #fff;
-            border-left: 5px solid #D4AF37;
+            padding: 1.5rem;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--accent);
         }
         
-        .highlights h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            color: #7B2D26;
+        .benefit-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
         }
         
-        .highlights ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 1.1rem;
-        }
-        
-        .highlights li {
-            margin: 0.4rem 0;
-            padding-left: 1.4rem;
-            position: relative;
-        }
-        
-        .highlights li::before {
-            content: "✔";
-            color: #D4AF37;
-            position: absolute;
-            left: 0;
-        }
-        
-        /* Buttons */
-        .buttons {
-            margin-top: 1.5rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            background-color: #7B2D26;
-            color: #F8F4EF;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 10px;
-            transition: 0.3s;
-            margin-right: 1rem;
+        .benefit-card h3 {
             font-size: 1.2rem;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background-color: #D4AF37;
-            color: #2C2C2C;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
         }
         
         /* Footer */
         footer {
             text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
-            background: #7B2D26;
-            color: #F8F4EF;
-            font-size: 1rem;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+            background: var(--primary);
+            color: var(--light);
+            font-size: 0.9rem;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
         }
         
         /* Responsive */
-        @media (max-width: 900px) {
+        @media (min-width: 768px) {
             .product {
-                grid-template-columns: 1fr;
+                flex-direction: row;
             }
             
-            header img {
-                height: 100px;
+            .gallery {
+                flex: 1;
+            }
+            
+            .details {
+                flex: 1;
             }
             
             .page-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
-            .details h1 {
-                font-size: 2rem;
+            .gallery-item {
+                height: 200px;
             }
             
-            .price {
-                font-size: 1.6rem;
+            .video-container video {
+                height: 300px;
             }
             
-            .description {
-                font-size: 1rem;
+            .price-container {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            header img {
+                height: 70px;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
             }
             
             .gallery {
@@ -285,60 +401,100 @@
             }
             
             .gallery-item {
-                height: 150px;
+                height: 180px;
             }
             
             .video-container video {
-                height: 200px;
+                height: 220px;
             }
             
-            .price-container {
+            .details h1 {
+                font-size: 1.6rem;
+            }
+            
+            .price {
+                font-size: 1.6rem;
+            }
+            
+            .buttons {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .highlights ul {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-nav button {
+                font-size: 1.5rem;
+                padding: 8px 12px;
+            }
+            
+            .close {
+                font-size: 30px;
+                right: 20px;
             }
         }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
     <header>
-        <img src="logo.jpeg" alt="Logo">
+        <img src="logo.jpeg" alt="Ambika Parv Logo">
     </header>
     
     <div class="container">
-        <div class="page-title">Golden Lotus Urli Water Fountain</div>
+        <h1 class="page-title animate">Golden Lotus Urli Water Fountain</h1>
         
         <div class="product">
             <!-- Gallery -->
             <div class="gallery">
-                <div class="video-container">
-                    <video controls autoplay muted>
+                <div class="video-container animate">
+                    <video controls autoplay muted playsinline>
                         <source src="video.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
                 
-                <img src="main image.jpeg" alt="Urli Fountain 1" class="gallery-item">
-                <img src="image2.jpeg" alt="Urli Fountain 2" class="gallery-item">
-                <img src="image3.jpeg" alt="Urli Fountain 3" class="gallery-item">
-                <img src="image4.jpeg" alt="Urli Fountain 4" class="gallery-item">
+                <img src="main image.jpeg" alt="Urli Fountain 1" class="gallery-item animate delay-1">
+                <img src="image2.jpeg" alt="Urli Fountain 2" class="gallery-item animate delay-1">
+                <img src="image3.jpeg" alt="Urli Fountain 3" class="gallery-item animate delay-2">
+                <img src="image4.jpeg" alt="Urli Fountain 4" class="gallery-item animate delay-2">
             </div>
             
             <!-- Product Details -->
             <div class="details">
-                <h1>Golden Lotus Urli</h1>
+                <h1 class="animate">Golden Lotus Urli</h1>
                 
-                <div class="price-container">
-                    <p class="price">Price: ₹899</p>
-                    <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">Buy Now</a>
+                <div class="price-container animate delay-1">
+                    <p class="price">₹899</p>
+                    <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">
+                        <i class="fas fa-shopping-cart"></i> Buy Now
+                    </a>
                 </div>
                 
-                <p class="description">
+                <p class="description animate delay-1">
                     Perfect for enhancing the ambiance of your home temple or Diwali decorations. The lotus pattern symbolizes purity and spiritual awakening, while intricate peacock motifs represent grace and prosperity.
                 </p>
                 
-                <div class="highlights">
-                    <h3>Top Highlights</h3>
+                <div class="highlights animate delay-2">
+                    <h3><i class="fas fa-star"></i> Top Highlights</h3>
                     <ul>
                         <li>Colour: Golden</li>
                         <li>Material: Metal</li>
@@ -351,9 +507,33 @@
                     </ul>
                 </div>
                 
-                <div class="buttons">
-                    <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">Buy Now</a>
+                <div class="buttons animate delay-3">
+                    <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">
+                        <i class="fas fa-shopping-cart"></i> Buy Now
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=919999999999&text=Hi, I'm interested in the Golden Lotus Urli Water Fountain" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
                 </div>
+            </div>
+        </div>
+        
+        <!-- Benefits Section -->
+        <div class="benefits">
+            <div class="benefit-card animate delay-1">
+                <i class="fas fa-truck"></i>
+                <h3>Free Shipping</h3>
+                <p>Free delivery across India on orders above ₹999</p>
+            </div>
+            <div class="benefit-card animate delay-2">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Secure Payment</h3>
+                <p>100% secure and encrypted payment processing</p>
+            </div>
+            <div class="benefit-card animate delay-3">
+                <i class="fas fa-undo"></i>
+                <h3>Easy Returns</h3>
+                <p>7-day easy return policy for all products</p>
             </div>
         </div>
     </div>
@@ -368,7 +548,18 @@
         </div>
     </div>
     
-    <footer>© 2025 Ambika Parv | All Rights Reserved</footer>
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>© 2025 Ambika Parv | All Rights Reserved</p>
+            <p>Bringing tradition and elegance to your home</p>
+        </div>
+    </footer>
     
     <script>
         // Gallery items
@@ -387,12 +578,14 @@
                 modal.style.display = "block";
                 modalImg.src = item.src;
                 currentIndex = index;
+                document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
             });
         });
         
         // Close modal
         closeBtn.addEventListener('click', () => {
             modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Re-enable scrolling
         });
         
         // Navigate modal images
@@ -410,6 +603,7 @@
         window.addEventListener('click', (event) => {
             if (event.target === modal) {
                 modal.style.display = "none";
+                document.body.style.overflow = "auto"; // Re-enable scrolling
             }
         });
         
@@ -422,8 +616,28 @@
                     modalNext.click();
                 } else if (event.key === "Escape") {
                     modal.style.display = "none";
+                    document.body.style.overflow = "auto"; // Re-enable scrolling
                 }
             }
+        });
+        
+        // Add animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.visibility = 'visible';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(element => {
+                element.style.visibility = 'hidden';
+                observer.observe(element);
+            });
         });
     </script>
 </body>
