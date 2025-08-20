@@ -1,284 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Urli Water Fountain</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: #F8F4EF;
-    color: #2C2C2C;
-}
-/* Header */
-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #7B2D26;
-}
-header img {
-    height: 120px;
-}
-/* Container */
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 1.5rem;
-}
-/* Title */
-.page-title {
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: #7B2D26;
-    margin-bottom: 2rem;
-}
-/* Media Grid */
-.media-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-.media-grid img, .media-grid video {
-    width: 100%;
-    height: auto;
-    border-radius: 15px;
-    border: 2px solid #D4AF37;
-    cursor: pointer;
-    object-fit: cover;
-    transition: transform 0.3s;
-}
-.media-grid img:hover, .media-grid video:hover {
-    transform: scale(1.03);
-}
-/* Product Details */
-.details {
-    margin-top: 2rem;
-}
-.details h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: #7B2D26;
-    margin-bottom: 1rem;
-}
-.price {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #D4AF37;
-    margin-bottom: 1rem;
-}
-.description {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-.highlights {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background: #fff;
-    border-left: 5px solid #D4AF37;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-.highlights h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    color: #7B2D26;
-}
-.highlights ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 1.1rem;
-}
-.highlights li {
-    margin: 0.4rem 0;
-    padding-left: 1.4rem;
-    position: relative;
-}
-.highlights li::before {
-    content: "✔";
-    color: #D4AF37;
-    position: absolute;
-    left: 0;
-}
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 12px 28px;
-    background-color: #7B2D26;
-    color: #F8F4EF;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 10px;
-    transition: 0.3s;
-    margin-right: 1rem;
-    font-size: 1.2rem;
-}
-.btn:hover {
-    background-color: #D4AF37;
-    color: #2C2C2C;
-}
-/* Footer */
-footer {
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-    background: #7B2D26;
-    color: #F8F4EF;
-    font-size: 1rem;
-}
-/* Fullscreen overlay */
-#fullscreenOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.95);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 9999;
-}
-#fullscreenOverlay img, #fullscreenOverlay video {
-    max-width: 90%;
-    max-height: 80%;
-    margin-bottom: 1rem;
-}
-#fullscreenOverlay .fs-buttons {
-    display: flex;
-    gap: 1rem;
-}
-.fs-btn {
-    padding: 12px 24px;
-    font-size: 1.2rem;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-.fs-btn:hover {
-    background: #D4AF37;
-    color: #2C2C2C;
-}
-@media (max-width: 900px) {
-    .page-title {
-        font-size: 2rem;
-    }
-    .details h1 {
-        font-size: 2rem;
-    }
-    .price {
-        font-size: 1.6rem;
-    }
-    .description {
-        font-size: 1rem;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urli Water Fountain</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F4EF;
+            color: #2C2C2C;
+        }
+        
+        /* Header */
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #7B2D26;
+        }
+        
+        header img {
+            height: 120px;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 1.5rem;
+        }
+        
+        /* Title */
+        .page-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #7B2D26;
+            margin-bottom: 2rem;
+        }
+        
+        /* Product section */
+        .product {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .gallery-item {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 2px solid #D4AF37;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .video-container {
+            grid-column: span 2;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #D4AF37;
+            background-color: #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #D4AF37;
+        }
+        
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        
+        .modal-nav button {
+            background-color: rgba(123, 45, 38, 0.7);
+            border: none;
+            color: #fff;
+            font-size: 2.5rem;
+            padding: 0 14px;
+            cursor: pointer;
+            border-radius: 50%;
+            pointer-events: all;
+            transition: 0.3s;
+            margin: 0 20px;
+        }
+        
+        .modal-nav button:hover {
+            background-color: #D4AF37;
+            color: #2C2C2C;
+        }
+        
+        /* Product Details */
+        .details h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #7B2C2C;
+            margin-bottom: 1rem;
+        }
+        
+        .price-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #D4AF37;
+        }
+        
+        .description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .highlights {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #fff;
+            border-left: 5px solid #D4AF37;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .highlights h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #7B2D26;
+        }
+        
+        .highlights ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        
+        .highlights li {
+            margin: 0.4rem 0;
+            padding-left: 1.4rem;
+            position: relative;
+        }
+        
+        .highlights li::before {
+            content: "✔";
+            color: #D4AF37;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Buttons */
+        .buttons {
+            margin-top: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #7B2D26;
+            color: #F8F4EF;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: 0.3s;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #D4AF37;
+            color: #2C2C2C;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+            background: #7B2D26;
+            color: #F8F4EF;
+            font-size: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .product {
+                grid-template-columns: 1fr;
+            }
+            
+            header img {
+                height: 100px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .details h1 {
+                font-size: 2rem;
+            }
+            
+            .price {
+                font-size: 1.6rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-container {
+                grid-column: span 1;
+            }
+            
+            .gallery-item {
+                height: 150px;
+            }
+            
+            .video-container video {
+                height: 200px;
+            }
+            
+            .price-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<header>
-    <img src="logo.jpeg" alt="Logo">
-</header>
-<div class="container">
-    <div class="page-title">Golden Lotus Urli Water Fountain</div>
+    <header>
+        <img src="logo.jpeg" alt="Logo">
+    </header>
     
-    <!-- Media Grid -->
-    <div class="media-grid">
-        <video src="video.mp4" controls class="media-item"></video>
-        <img src="main image.jpeg" alt="Urli Fountain 1" class="media-item">
-        <img src="image2.jpeg" alt="Urli Fountain 2" class="media-item">
-        <img src="image3.jpeg" alt="Urli Fountain 3" class="media-item">
-        <img src="image4.jpeg" alt="Urli Fountain 4" class="media-item">
-    </div>
-
-    <!-- Product Details -->
-    <div class="details">
-        <p class="price">Price: ₹899 <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">Buy Now</a></p>
-        <p class="description">
-            Perfect for enhancing the ambiance of your home temple or Diwali decorations. The lotus pattern symbolizes purity and spiritual awakening, while intricate peacock motifs represent grace and prosperity.
-        </p>
-        <div class="highlights">
-            <h3>Top Highlights</h3>
-            <ul>
-                <li>Colour: Golden</li>
-                <li>Material: Metal</li>
-                <li>Brand: Awadh</li>
-                <li>Dimensions: 27L x 28W x 8H cm</li>
-                <li>Finish: Polished</li>
-                <li>Weight: 393 g</li>
-                <li>Perfect for diyas, tealights & pooja centerpiece</li>
-                <li>Intricate peacock motifs symbolizing prosperity</li>
-            </ul>
+    <div class="container">
+        <div class="page-title">Golden Lotus Urli Water Fountain</div>
+        
+        <div class="product">
+            <!-- Gallery -->
+            <div class="gallery">
+                <div class="video-container">
+                    <video controls autoplay muted>
+                        <source src="video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                
+                <img src="main image.jpeg" alt="Urli Fountain 1" class="gallery-item">
+                <img src="image2.jpeg" alt="Urli Fountain 2" class="gallery-item">
+                <img src="image3.jpeg" alt="Urli Fountain 3" class="gallery-item">
+                <img src="image4.jpeg" alt="Urli Fountain 4" class="gallery-item">
+            </div>
+            
+            <!-- Product Details -->
+            <div class="details">
+                <h1>Golden Lotus Urli</h1>
+                
+                <div class="price-container">
+                    <p class="price">Price: ₹899</p>
+                    <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">Buy Now</a>
+                </div>
+                
+                <p class="description">
+                    Perfect for enhancing the ambiance of your home temple or Diwali decorations. The lotus pattern symbolizes purity and spiritual awakening, while intricate peacock motifs represent grace and prosperity.
+                </p>
+                
+                <div class="highlights">
+                    <h3>Top Highlights</h3>
+                    <ul>
+                        <li>Colour: Golden</li>
+                        <li>Material: Metal</li>
+                        <li>Brand: Awadh</li>
+                        <li>Dimensions: 27L x 28W x 8H cm</li>
+                        <li>Finish: Polished</li>
+                        <li>Weight: 393 g</li>
+                        <li>Perfect for diyas, tealights & pooja centerpiece</li>
+                        <li>Intricate peacock motifs symbolizing prosperity</li>
+                    </ul>
+                </div>
+                
+                <div class="buttons">
+                    <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">Buy Now</a>
+                </div>
+            </div>
         </div>
-        <div class="buttons">
-            <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">Buy Now</a>
+    </div>
+    
+    <!-- Modal for fullscreen images -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-nav">
+            <button id="modalPrev">&#10094;</button>
+            <button id="modalNext">&#10095;</button>
         </div>
     </div>
-</div>
-
-<footer>© 2025 Ambika Parv | All Rights Reserved</footer>
-
-<!-- Fullscreen overlay -->
-<div id="fullscreenOverlay">
-    <div id="fsMediaContainer"></div>
-    <div class="fs-buttons">
-        <button class="fs-btn" id="fsPrev">Previous</button>
-        <button class="fs-btn" id="fsNext">Next</button>
-        <button class="fs-btn" id="fsClose">Close</button>
-    </div>
-</div>
-
-<script>
-const mediaItems = Array.from(document.querySelectorAll('.media-item'));
-let currentIndex = 0;
-
-const fsOverlay = document.getElementById('fullscreenOverlay');
-const fsContainer = document.getElementById('fsMediaContainer');
-const fsPrev = document.getElementById('fsPrev');
-const fsNext = document.getElementById('fsNext');
-const fsClose = document.getElementById('fsClose');
-
-function openFullscreen(index){
-    currentIndex = index;
-    fsOverlay.style.display = 'flex';
-    displayFSMedia();
-}
-
-function displayFSMedia(){
-    fsContainer.innerHTML = '';
-    const item = mediaItems[currentIndex].cloneNode(true);
-    item.removeAttribute('controls'); // remove controls if desired
-    if(item.tagName === 'VIDEO') item.setAttribute('controls', '');
-    fsContainer.appendChild(item);
-}
-
-mediaItems.forEach((item, idx) => {
-    item.addEventListener('click', ()=> openFullscreen(idx));
-});
-
-fsPrev.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + mediaItems.length) % mediaItems.length;
-    displayFSMedia();
-});
-
-fsNext.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % mediaItems.length;
-    displayFSMedia();
-});
-
-fsClose.addEventListener('click', () => {
-    fsOverlay.style.display = 'none';
-});
-</script>
+    
+    <footer>© 2025 Ambika Parv | All Rights Reserved</footer>
+    
+    <script>
+        // Gallery items
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.querySelector('.close');
+        const modalPrev = document.getElementById('modalPrev');
+        const modalNext = document.getElementById('modalNext');
+        
+        let currentIndex = 0;
+        
+        // Open modal when clicking on a gallery image
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                modal.style.display = "block";
+                modalImg.src = item.src;
+                currentIndex = index;
+            });
+        });
+        
+        // Close modal
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = "none";
+        });
+        
+        // Navigate modal images
+        modalPrev.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+            modalImg.src = galleryItems[currentIndex].src;
+        });
+        
+        modalNext.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % galleryItems.length;
+            modalImg.src = galleryItems[currentIndex].src;
+        });
+        
+        // Close modal when clicking outside the image
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (event) => {
+            if (modal.style.display === "block") {
+                if (event.key === "ArrowLeft") {
+                    modalPrev.click();
+                } else if (event.key === "ArrowRight") {
+                    modalNext.click();
+                } else if (event.key === "Escape") {
+                    modal.style.display = "none";
+                }
+            }
+        });
+    </script>
 </body>
 </html>
-
