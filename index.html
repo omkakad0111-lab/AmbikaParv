@@ -6,146 +6,108 @@
 <title>Urli Water Fountain</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  body {
+body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     background-color: #F8F4EF;
     color: #2C2C2C;
-  }
-
-  header {
+}
+/* Header */
+header {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem 2rem;
     background-color: #7B2D26;
-  }
-
-  header img {
+}
+header img {
     height: 120px;
-  }
-
-  .container {
+}
+/* Container */
+.container {
     max-width: 1200px;
     margin: auto;
     padding: 1.5rem;
-  }
-
-  .page-title {
+}
+/* Title */
+.page-title {
     text-align: center;
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     color: #7B2D26;
     margin-bottom: 2rem;
-  }
-
-  .product {
+}
+/* Media Grid */
+.media-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: start;
-  }
-
-  /* Main video */
-  .main-video {
-    width: 100%;
-    border-radius: 15px;
-    overflow: hidden;
-    border: 2px solid #D4AF37;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    margin-bottom: 1rem;
-  }
-
-  .main-video video {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+.media-grid img, .media-grid video {
     width: 100%;
     height: auto;
-    display: block;
-  }
-
-  /* Gallery - aesthetic masonry style */
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    grid-auto-rows: 180px;
-    gap: 10px;
-    margin-top: 1rem;
-  }
-
-  .gallery img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     border-radius: 15px;
     border: 2px solid #D4AF37;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     cursor: pointer;
+    object-fit: cover;
     transition: transform 0.3s;
-  }
-
-  .gallery img:hover {
-    transform: scale(1.05);
-  }
-
-  .details h1 {
+}
+.media-grid img:hover, .media-grid video:hover {
+    transform: scale(1.03);
+}
+/* Product Details */
+.details {
+    margin-top: 2rem;
+}
+.details h1 {
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     color: #7B2D26;
     margin-bottom: 1rem;
-  }
-
-  .price {
+}
+.price {
     font-size: 2rem;
     font-weight: 600;
     color: #D4AF37;
     margin-bottom: 1rem;
-  }
-
-  .description {
+}
+.description {
     font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
-  }
-
-  .highlights {
+}
+.highlights {
     margin-top: 1.5rem;
     padding: 1rem;
     background: #fff;
     border-left: 5px solid #D4AF37;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  }
-
-  .highlights h3 {
+}
+.highlights h3 {
     font-size: 1.4rem;
     margin-bottom: 0.5rem;
     color: #7B2D26;
-  }
-
-  .highlights ul {
+}
+.highlights ul {
     list-style: none;
     padding: 0;
     margin: 0;
     font-size: 1.1rem;
-  }
-
-  .highlights li {
+}
+.highlights li {
     margin: 0.4rem 0;
     padding-left: 1.4rem;
     position: relative;
-  }
-
-  .highlights li::before {
+}
+.highlights li::before {
     content: "✔";
     color: #D4AF37;
     position: absolute;
     left: 0;
-  }
-
-  .buttons {
-    margin-top: 1.5rem;
-  }
-
-  .btn {
+}
+/* Buttons */
+.btn {
     display: inline-block;
     padding: 12px 28px;
     background-color: #7B2D26;
@@ -156,156 +118,167 @@
     transition: 0.3s;
     margin-right: 1rem;
     font-size: 1.2rem;
-  }
-
-  .btn:hover {
+}
+.btn:hover {
     background-color: #D4AF37;
     color: #2C2C2C;
-  }
-
-  footer {
+}
+/* Footer */
+footer {
     text-align: center;
     padding: 1rem;
     margin-top: 2rem;
     background: #7B2D26;
     color: #F8F4EF;
     font-size: 1rem;
-  }
-
-  @media (max-width: 900px) {
-    .product {
-      grid-template-columns: 1fr;
-    }
-
-    header img {
-      height: 100px;
-    }
-
-    .page-title {
-      font-size: 2rem;
-    }
-
-    .details h1 {
-      font-size: 2rem;
-    }
-
-    .price {
-      font-size: 1.6rem;
-    }
-
-    .description {
-      font-size: 1rem;
-    }
-
-    .gallery {
-      grid-template-columns: 1fr 1fr;
-      grid-auto-rows: 150px;
-    }
-  }
-
-  /* Fullscreen lightbox */
-  #lightbox {
+}
+/* Fullscreen overlay */
+#fullscreenOverlay {
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
     display: none;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.9);
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-  }
-
-  #lightbox img {
+    flex-direction: column;
+    z-index: 9999;
+}
+#fullscreenOverlay img, #fullscreenOverlay video {
     max-width: 90%;
-    max-height: 90%;
-    border-radius: 15px;
-  }
+    max-height: 80%;
+    margin-bottom: 1rem;
+}
+#fullscreenOverlay .fs-buttons {
+    display: flex;
+    gap: 1rem;
+}
+.fs-btn {
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.fs-btn:hover {
+    background: #D4AF37;
+    color: #2C2C2C;
+}
+@media (max-width: 900px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    .details h1 {
+        font-size: 2rem;
+    }
+    .price {
+        font-size: 1.6rem;
+    }
+    .description {
+        font-size: 1rem;
+    }
+}
 </style>
 </head>
 <body>
-
 <header>
-  <img src="logo.jpeg" alt="Logo">
+    <img src="logo.jpeg" alt="Logo">
 </header>
-
 <div class="container">
-  <div class="page-title">Golden Lotus Urli Water Fountain</div>
-  <div class="product">
-    <!-- Left: Video + Gallery -->
-    <div>
-      <div class="main-video">
-        <video controls>
-          <source src="video.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-
-      <div class="gallery">
-        <img src="main image.jpeg" alt="Urli Fountain 1">
-        <img src="image2.jpeg" alt="Urli Fountain 2">
-        <img src="image3.jpeg" alt="Urli Fountain 3">
-        <img src="image4.jpeg" alt="Urli Fountain 4">
-      </div>
-
-      <!-- Buy Now below images -->
-      <div class="buttons" style="margin-top:1rem;">
-        <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">Buy Now</a>
-      </div>
+    <div class="page-title">Golden Lotus Urli Water Fountain</div>
+    
+    <!-- Media Grid -->
+    <div class="media-grid">
+        <video src="video.mp4" controls class="media-item"></video>
+        <img src="main image.jpeg" alt="Urli Fountain 1" class="media-item">
+        <img src="image2.jpeg" alt="Urli Fountain 2" class="media-item">
+        <img src="image3.jpeg" alt="Urli Fountain 3" class="media-item">
+        <img src="image4.jpeg" alt="Urli Fountain 4" class="media-item">
     </div>
 
-    <!-- Right: Product details -->
+    <!-- Product Details -->
     <div class="details">
-      <p class="price">Price: ₹899</p>
-      <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">Buy Now</a>
-
-      <p class="description">
-        Perfect for enhancing the ambiance of your home temple or Diwali decorations. 
-        The lotus pattern symbolizes purity and spiritual awakening, while intricate peacock motifs represent grace and prosperity.
-      </p>
-
-      <div class="highlights">
-        <h3>Top Highlights</h3>
-        <ul>
-          <li>Colour: Golden</li>
-          <li>Material: Metal</li>
-          <li>Brand: Awadh</li>
-          <li>Dimensions: 27L x 28W x 8H cm</li>
-          <li>Finish: Polished</li>
-          <li>Weight: 393 g</li>
-          <li>Perfect for diyas, tealights & pooja centerpiece</li>
-          <li>Intricate peacock motifs symbolizing prosperity</li>
-        </ul>
-      </div>
+        <p class="price">Price: ₹899 <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">Buy Now</a></p>
+        <p class="description">
+            Perfect for enhancing the ambiance of your home temple or Diwali decorations. The lotus pattern symbolizes purity and spiritual awakening, while intricate peacock motifs represent grace and prosperity.
+        </p>
+        <div class="highlights">
+            <h3>Top Highlights</h3>
+            <ul>
+                <li>Colour: Golden</li>
+                <li>Material: Metal</li>
+                <li>Brand: Awadh</li>
+                <li>Dimensions: 27L x 28W x 8H cm</li>
+                <li>Finish: Polished</li>
+                <li>Weight: 393 g</li>
+                <li>Perfect for diyas, tealights & pooja centerpiece</li>
+                <li>Intricate peacock motifs symbolizing prosperity</li>
+            </ul>
+        </div>
+        <div class="buttons">
+            <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">Buy Now</a>
+        </div>
     </div>
-  </div>
 </div>
 
 <footer>© 2025 Ambika Parv | All Rights Reserved</footer>
 
-<!-- Lightbox overlay -->
-<div id="lightbox">
-  <img src="" alt="Enlarged Image">
+<!-- Fullscreen overlay -->
+<div id="fullscreenOverlay">
+    <div id="fsMediaContainer"></div>
+    <div class="fs-buttons">
+        <button class="fs-btn" id="fsPrev">Previous</button>
+        <button class="fs-btn" id="fsNext">Next</button>
+        <button class="fs-btn" id="fsClose">Close</button>
+    </div>
 </div>
 
 <script>
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = lightbox.querySelector('img');
-  const galleryImages = document.querySelectorAll('.gallery img');
+const mediaItems = Array.from(document.querySelectorAll('.media-item'));
+let currentIndex = 0;
 
-  galleryImages.forEach(img => {
-    img.addEventListener('click', () => {
-      lightbox.style.display = 'flex';
-      lightboxImg.src = img.src;
-    });
-  });
+const fsOverlay = document.getElementById('fullscreenOverlay');
+const fsContainer = document.getElementById('fsMediaContainer');
+const fsPrev = document.getElementById('fsPrev');
+const fsNext = document.getElementById('fsNext');
+const fsClose = document.getElementById('fsClose');
 
-  lightbox.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-    lightboxImg.src = '';
-  });
+function openFullscreen(index){
+    currentIndex = index;
+    fsOverlay.style.display = 'flex';
+    displayFSMedia();
+}
+
+function displayFSMedia(){
+    fsContainer.innerHTML = '';
+    const item = mediaItems[currentIndex].cloneNode(true);
+    item.removeAttribute('controls'); // remove controls if desired
+    if(item.tagName === 'VIDEO') item.setAttribute('controls', '');
+    fsContainer.appendChild(item);
+}
+
+mediaItems.forEach((item, idx) => {
+    item.addEventListener('click', ()=> openFullscreen(idx));
+});
+
+fsPrev.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + mediaItems.length) % mediaItems.length;
+    displayFSMedia();
+});
+
+fsNext.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % mediaItems.length;
+    displayFSMedia();
+});
+
+fsClose.addEventListener('click', () => {
+    fsOverlay.style.display = 'none';
+});
 </script>
-
 </body>
 </html>
+
