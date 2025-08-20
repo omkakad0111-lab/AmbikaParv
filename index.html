@@ -46,7 +46,7 @@
     align-items: start;
   }
 
-  /* Video first */
+  /* Main video */
   .main-video {
     width: 100%;
     border-radius: 15px;
@@ -62,16 +62,19 @@
     display: block;
   }
 
-  /* Gallery */
+  /* Gallery - aesthetic masonry style */
   .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-auto-rows: 180px;
+    gap: 10px;
     margin-top: 1rem;
   }
 
   .gallery img {
-    width: calc(50% - 0.5rem);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 15px;
     border: 2px solid #D4AF37;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
@@ -194,33 +197,30 @@
       font-size: 1rem;
     }
 
-    .gallery img {
-      width: 100%;
+    .gallery {
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 150px;
     }
   }
 
-  /* Fullscreen overlay for gallery */
-  #overlay {
+  /* Fullscreen lightbox */
+  #lightbox {
     position: fixed;
     display: none;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
     background: rgba(0,0,0,0.9);
     justify-content: center;
     align-items: center;
     z-index: 1000;
   }
 
-  #overlay img {
+  #lightbox img {
     max-width: 90%;
     max-height: 90%;
     border-radius: 15px;
-  }
-
-  #overlay:target {
-    display: flex;
   }
 </style>
 </head>
@@ -233,7 +233,7 @@
 <div class="container">
   <div class="page-title">Golden Lotus Urli Water Fountain</div>
   <div class="product">
-    <!-- Left: Video and gallery -->
+    <!-- Left: Video + Gallery -->
     <div>
       <div class="main-video">
         <video controls>
@@ -243,10 +243,15 @@
       </div>
 
       <div class="gallery">
-        <a href="#img1"><img src="main image.jpeg" alt="Urli Fountain 1"></a>
-        <a href="#img2"><img src="image2.jpeg" alt="Urli Fountain 2"></a>
-        <a href="#img3"><img src="image3.jpeg" alt="Urli Fountain 3"></a>
-        <a href="#img4"><img src="image4.jpeg" alt="Urli Fountain 4"></a>
+        <img src="main image.jpeg" alt="Urli Fountain 1">
+        <img src="image2.jpeg" alt="Urli Fountain 2">
+        <img src="image3.jpeg" alt="Urli Fountain 3">
+        <img src="image4.jpeg" alt="Urli Fountain 4">
+      </div>
+
+      <!-- Buy Now below images -->
+      <div class="buttons" style="margin-top:1rem;">
+        <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">Buy Now</a>
       </div>
     </div>
 
@@ -273,35 +278,32 @@
           <li>Intricate peacock motifs symbolizing prosperity</li>
         </ul>
       </div>
-
-      <div class="buttons">
-        <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">Buy Now</a>
-      </div>
     </div>
   </div>
 </div>
 
 <footer>© 2025 Ambika Parv | All Rights Reserved</footer>
 
-<!-- Fullscreen overlay images -->
-<div id="img1" class="overlay"><img src="main image.jpeg" alt="Urli Fountain 1"></div>
-<div id="img2" class="overlay"><img src="image2.jpeg" alt="Urli Fountain 2"></div>
-<div id="img3" class="overlay"><img src="image3.jpeg" alt="Urli Fountain 3"></div>
-<div id="img4" class="overlay"><img src="image4.jpeg" alt="Urli Fountain 4"></div>
+<!-- Lightbox overlay -->
+<div id="lightbox">
+  <img src="" alt="Enlarged Image">
+</div>
 
 <script>
-  // Simple lightbox overlay
-  const galleryLinks = document.querySelectorAll('.gallery a');
-  galleryLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const overlayId = link.getAttribute('href').substring(1);
-      const overlay = document.getElementById(overlayId);
-      overlay.style.display = 'flex';
-      overlay.addEventListener('click', () => {
-        overlay.style.display = 'none';
-      });
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const galleryImages = document.querySelectorAll('.gallery img');
+
+  galleryImages.forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
     });
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
   });
 </script>
 
