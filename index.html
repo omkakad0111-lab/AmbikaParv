@@ -52,50 +52,26 @@
 
   /* Carousel */
   .carousel {
-    position: relative;
-    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     border-radius: 15px;
     border: 2px solid #D4AF37;
     background-color: #fff;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    padding: 1rem;
   }
 
   .carousel-item {
-    display: none;
-    width: 100%;
-    height: 500px;
+    width: calc(50% - 0.5rem);
+    height: 250px;
     object-fit: cover;
   }
 
-  .carousel-item.active {
-    display: block;
-  }
-
-  .carousel-controls {
-    position: absolute;
-    top: 50%;
+  .carousel-item video {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-
-  .carousel-controls button {
-    background-color: rgba(123, 45, 38, 0.7);
-    border: none;
-    color: #fff;
-    font-size: 2.5rem;
-    padding: 0 14px;
-    cursor: pointer;
-    border-radius: 50%;
-    pointer-events: all;
-    transition: 0.3s;
-  }
-
-  .carousel-controls button:hover {
-    background-color: #D4AF37;
-    color: #2C2C2C;
+    height: 100%;
+    object-fit: cover;
   }
 
   /* Product Details */
@@ -214,6 +190,7 @@
     }
 
     .carousel-item {
+      width: 100%;
       height: auto;
     }
 
@@ -237,7 +214,7 @@
   <div class="product">
     <!-- Carousel -->
     <div class="carousel">
-      <img src="main image.jpeg" alt="Urli Fountain 1" class="carousel-item active">
+      <img src="main image.jpeg" alt="Urli Fountain 1" class="carousel-item">
       <video class="carousel-item" controls>
         <source src="video.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -245,15 +222,12 @@
       <img src="image2.jpeg" alt="Urli Fountain 2" class="carousel-item">
       <img src="image3.jpeg" alt="Urli Fountain 3" class="carousel-item">
       <img src="image4.jpeg" alt="Urli Fountain 4" class="carousel-item">
-      <div class="carousel-controls">
-        <button id="prev">&#10094;</button>
-        <button id="next">&#10095;</button>
-      </div>
     </div>
 
     <!-- Product Details -->
     <div class="details">
       <p class="price">Price: ₹899</p>
+      <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">Buy Now</a>
       <p class="description">
         Perfect for enhancing the ambiance of your home temple or Diwali decorations. 
         The lotus pattern symbolizes purity and spiritual awakening, while intricate peacock motifs represent grace and prosperity.
@@ -273,6 +247,7 @@
         </ul>
       </div>
 
+      <!-- Duplicate Buy Now button below carousel -->
       <div class="buttons">
         <a href="https://ambikaparv.com/products/urli-water-fountain" class="btn">Buy Now</a>
       </div>
@@ -281,23 +256,6 @@
 </div>
 
 <footer>© 2025 Ambika Parv | All Rights Reserved</footer>
-
-<script>
-  const items = document.querySelectorAll('.carousel-item');
-  let currentIndex = 0;
-
-  document.getElementById('next').addEventListener('click', () => {
-    items[currentIndex].classList.remove('active');
-    currentIndex = (currentIndex + 1) % items.length;
-    items[currentIndex].classList.add('active');
-  });
-
-  document.getElementById('prev').addEventListener('click', () => {
-    items[currentIndex].classList.remove('active');
-    currentIndex = (currentIndex - 1 + items.length) % items.length;
-    items[currentIndex].classList.add('active');
-  });
-</script>
 
 </body>
 </html>
