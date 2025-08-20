@@ -70,43 +70,83 @@
             gap: 2rem;
         }
         
-        /* Gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-        
-        .gallery-item {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.3s;
-            border: 2px solid var(--accent);
-            box-shadow: var(--shadow);
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.03);
-        }
-        
-        .video-container {
-            grid-column: span 2;
+        /* Video Reel */
+        .video-reel {
             position: relative;
             border-radius: 15px;
             overflow: hidden;
             border: 2px solid var(--accent);
             background-color: #fff;
             box-shadow: var(--shadow);
+            height: 600px;
         }
         
-        .video-container video {
+        .video-reel video {
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
             display: block;
+        }
+        
+        /* Image Collage */
+        .image-collage {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 150px);
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+        
+        .collage-item {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+            box-shadow: var(--shadow);
+        }
+        
+        .collage-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* Collage layout */
+        .collage-item:nth-child(1) {
+            grid-column: 1 / 3;
+            grid-row: 1 / 3;
+        }
+        
+        .collage-item:nth-child(2) {
+            grid-column: 3 / 4;
+            grid-row: 1 / 2;
+        }
+        
+        .collage-item:nth-child(3) {
+            grid-column: 4 / 5;
+            grid-row: 1 / 2;
+        }
+        
+        .collage-item:nth-child(4) {
+            grid-column: 3 / 5;
+            grid-row: 2 / 3;
+        }
+        
+        .collage-item:nth-child(5) {
+            grid-column: 1 / 2;
+            grid-row: 3 / 4;
+        }
+        
+        .collage-item:nth-child(6) {
+            grid-column: 2 / 3;
+            grid-row: 3 / 4;
+        }
+        
+        .collage-item:nth-child(7) {
+            grid-column: 3 / 5;
+            grid-row: 3 / 4;
         }
         
         /* Product Details */
@@ -228,33 +268,41 @@
             display: none;
             position: fixed;
             z-index: 1000;
-            padding-top: 50px;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(0,0,0,0.95);
+        }
+        
+        .modal-content-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
         }
         
         .modal-content {
-            margin: auto;
-            display: block;
-            width: 90%;
-            max-width: 700px;
-            max-height: 80vh;
+            max-width: 90%;
+            max-height: 90vh;
             object-fit: contain;
             border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.6);
         }
         
         .close {
             position: absolute;
-            top: 15px;
+            top: 25px;
             right: 35px;
             color: #f1f1f1;
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 1001;
+            transition: color 0.3s;
         }
         
         .close:hover {
@@ -263,25 +311,27 @@
         
         .modal-nav {
             position: absolute;
-            top: 50%;
-            width: 100%;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
+            gap: 1rem;
             pointer-events: none;
         }
         
         .modal-nav button {
-            background-color: rgba(123, 45, 38, 0.7);
+            background-color: rgba(123, 45, 38, 0.8);
             border: none;
             color: #fff;
-            font-size: 2rem;
-            padding: 10px 15px;
+            font-size: 1.2rem;
+            padding: 12px 20px;
             cursor: pointer;
-            border-radius: 50%;
+            border-radius: 30px;
             pointer-events: all;
             transition: 0.3s;
-            margin: 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .modal-nav button:hover {
@@ -356,7 +406,7 @@
                 flex-direction: row;
             }
             
-            .gallery {
+            .gallery-section {
                 flex: 1;
             }
             
@@ -368,18 +418,61 @@
                 font-size: 2.5rem;
             }
             
-            .gallery-item {
-                height: 200px;
-            }
-            
-            .video-container video {
-                height: 300px;
-            }
-            
             .price-container {
                 flex-direction: row;
                 align-items: center;
                 justify-content: space-between;
+            }
+        }
+        
+        @media (max-width: 1100px) {
+            .image-collage {
+                grid-template-rows: repeat(3, 120px);
+            }
+            
+            .video-reel {
+                height: 500px;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .image-collage {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(4, 120px);
+            }
+            
+            .collage-item:nth-child(1) {
+                grid-column: 1 / 3;
+                grid-row: 1 / 3;
+            }
+            
+            .collage-item:nth-child(2) {
+                grid-column: 3 / 4;
+                grid-row: 1 / 2;
+            }
+            
+            .collage-item:nth-child(3) {
+                grid-column: 1 / 2;
+                grid-row: 3 / 4;
+            }
+            
+            .collage-item:nth-child(4) {
+                grid-column: 2 / 4;
+                grid-row: 3 / 4;
+            }
+            
+            .collage-item:nth-child(5) {
+                grid-column: 1 / 3;
+                grid-row: 4 / 5;
+            }
+            
+            .collage-item:nth-child(6) {
+                grid-column: 3 / 4;
+                grid-row: 4 / 5;
+            }
+            
+            .collage-item:nth-child(7) {
+                display: none;
             }
         }
         
@@ -392,20 +485,44 @@
                 font-size: 1.8rem;
             }
             
-            .gallery {
-                grid-template-columns: 1fr;
+            .video-reel {
+                height: 400px;
             }
             
-            .video-container {
-                grid-column: span 1;
+            .image-collage {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(5, 100px);
+                gap: 0.6rem;
             }
             
-            .gallery-item {
-                height: 180px;
+            .collage-item:nth-child(1) {
+                grid-column: 1 / 3;
+                grid-row: 1 / 3;
             }
             
-            .video-container video {
-                height: 220px;
+            .collage-item:nth-child(2) {
+                grid-column: 1 / 2;
+                grid-row: 3 / 4;
+            }
+            
+            .collage-item:nth-child(3) {
+                grid-column: 2 / 3;
+                grid-row: 3 / 4;
+            }
+            
+            .collage-item:nth-child(4) {
+                grid-column: 1 / 3;
+                grid-row: 4 / 5;
+            }
+            
+            .collage-item:nth-child(5) {
+                grid-column: 1 / 2;
+                grid-row: 5 / 6;
+            }
+            
+            .collage-item:nth-child(6) {
+                grid-column: 2 / 3;
+                grid-row: 5 / 6;
             }
             
             .details h1 {
@@ -429,13 +546,14 @@
             }
             
             .modal-nav button {
-                font-size: 1.5rem;
-                padding: 8px 12px;
+                font-size: 1rem;
+                padding: 10px 16px;
             }
             
             .close {
                 font-size: 30px;
                 right: 20px;
+                top: 15px;
             }
         }
         
@@ -463,19 +581,26 @@
         <h1 class="page-title animate">Golden Lotus Urli Water Fountain</h1>
         
         <div class="product">
-            <!-- Gallery -->
-            <div class="gallery">
-                <div class="video-container animate">
+            <!-- Gallery Section -->
+            <div class="gallery-section">
+                <!-- Video Reel -->
+                <div class="video-reel animate">
                     <video controls autoplay muted playsinline>
                         <source src="video.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
                 
-                <img src="main image.jpeg" alt="Urli Fountain 1" class="gallery-item animate delay-1">
-                <img src="image2.jpeg" alt="Urli Fountain 2" class="gallery-item animate delay-1">
-                <img src="image3.jpeg" alt="Urli Fountain 3" class="gallery-item animate delay-2">
-                <img src="image4.jpeg" alt="Urli Fountain 4" class="gallery-item animate delay-2">
+                <!-- Image Collage -->
+                <div class="image-collage">
+                    <img src="main image.jpeg" alt="Urli Fountain 1" class="collage-item animate delay-1">
+                    <img src="image2.jpeg" alt="Urli Fountain 2" class="collage-item animate delay-1">
+                    <img src="image3.jpeg" alt="Urli Fountain 3" class="collage-item animate delay-2">
+                    <img src="image4.jpeg" alt="Urli Fountain 4" class="collage-item animate delay-2">
+                    <img src="image5.jpeg" alt="Urli Fountain 5" class="collage-item animate delay-3">
+                    <img src="image6.jpeg" alt="Urli Fountain 6" class="collage-item animate delay-3">
+                    <img src="image7.jpeg" alt="Urli Fountain 7" class="collage-item animate delay-3">
+                </div>
             </div>
             
             <!-- Product Details -->
@@ -521,19 +646,19 @@
         <!-- Benefits Section -->
         <div class="benefits">
             <div class="benefit-card animate delay-1">
-                <i class="fas fa-truck"></i>
-                <h3>Free Shipping</h3>
-                <p>Free delivery across India on orders above ₹999</p>
+                <i class="fas fa-medal"></i>
+                <h3>Premium Quality</h3>
+                <p>Handcrafted with attention to detail using high-quality materials</p>
             </div>
             <div class="benefit-card animate delay-2">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Secure Payment</h3>
-                <p>100% secure and encrypted payment processing</p>
+                <i class="fas fa-gem"></i>
+                <h3>Elegant Design</h3>
+                <p>Intricate lotus and peacock motifs that enhance your sacred space</p>
             </div>
             <div class="benefit-card animate delay-3">
-                <i class="fas fa-undo"></i>
-                <h3>Easy Returns</h3>
-                <p>7-day easy return policy for all products</p>
+                <i class="fas fa-gift"></i>
+                <h3>Perfect Gift</h3>
+                <p>Ideal for housewarming, weddings, and religious ceremonies</p>
             </div>
         </div>
     </div>
@@ -541,20 +666,19 @@
     <!-- Modal for fullscreen images -->
     <div id="imageModal" class="modal">
         <span class="close">&times;</span>
-        <img class="modal-content" id="modalImage">
+        <div class="modal-content-container">
+            <img class="modal-content" id="modalImage">
+        </div>
         <div class="modal-nav">
-            <button id="modalPrev">&#10094;</button>
-            <button id="modalNext">&#10095;</button>
+            <button id="modalPrev"><i class="fas fa-chevron-left"></i> Previous</button>
+            <button id="modalNext">Next <i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
     
     <footer>
         <div class="footer-content">
             <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-pinterest"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
             <p>© 2025 Ambika Parv | All Rights Reserved</p>
             <p>Bringing tradition and elegance to your home</p>
@@ -563,7 +687,7 @@
     
     <script>
         // Gallery items
-        const galleryItems = document.querySelectorAll('.gallery-item');
+        const collageItems = document.querySelectorAll('.collage-item');
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
         const closeBtn = document.querySelector('.close');
@@ -572,8 +696,8 @@
         
         let currentIndex = 0;
         
-        // Open modal when clicking on a gallery image
-        galleryItems.forEach((item, index) => {
+        // Open modal when clicking on a collage image
+        collageItems.forEach((item, index) => {
             item.addEventListener('click', () => {
                 modal.style.display = "block";
                 modalImg.src = item.src;
@@ -590,13 +714,13 @@
         
         // Navigate modal images
         modalPrev.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-            modalImg.src = galleryItems[currentIndex].src;
+            currentIndex = (currentIndex - 1 + collageItems.length) % collageItems.length;
+            modalImg.src = collageItems[currentIndex].src;
         });
         
         modalNext.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % galleryItems.length;
-            modalImg.src = galleryItems[currentIndex].src;
+            currentIndex = (currentIndex + 1) % collageItems.length;
+            modalImg.src = collageItems[currentIndex].src;
         });
         
         // Close modal when clicking outside the image
